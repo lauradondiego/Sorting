@@ -7,21 +7,21 @@ def selection_sort(arr):
         lowest_index = i
         # TO-DO: find next smallest element
         # (hint, can do in 3 loc)
-        for j in range(lowest_index + 1, len(arr)):
+        for j in range(i + 1, len(arr)):
             # j is the index that starts right after i
             # so now you are comparing [i and j] directly to the right
             if arr[j] < arr[lowest_index]:
                 # look at j and compare it to [i(aka the cur_index)]
                 # if j is lower than i, then the smallest index is lower
                 lowest_index = j
-            if i != lowest_index:
                 # ^ then reset the smallest index to that j index
-                arr[i], arr[lowest_index] = arr[lowest_index], arr[i]
+        if i != lowest_index:
+            arr[i], arr[lowest_index] = arr[lowest_index], arr[i]
 
     return arr
 
 
-print(selection_sort([3, 8, 4, 12, 1]))  # test
+print(selection_sort([3, 8, 4, 12, 1, 92]))  # test
 
 
 # TO-DO:  implement the Bubble Sort function below
