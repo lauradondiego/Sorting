@@ -2,7 +2,8 @@
 def selection_sort(arr):
     for i in range(0, len(arr) - 1):
         # assume i is the smallest value [index 0]
-        lowest_index = i
+        lowest_index = i # holds the index position of the lowest value
+        # setting the min value to the i position
         # TO-DO: find next smallest element
         for j in range(i + 1, len(arr)):
             # j is the index that starts right after i
@@ -13,7 +14,9 @@ def selection_sort(arr):
                 lowest_index = j
                 # ^ then reset the smallest index to that j index
         if i != lowest_index:
+            # if we find an item that has a lower value than lowest_index
             arr[i], arr[lowest_index] = arr[lowest_index], arr[i]
+            # then we need to swap
 
     return arr
 
