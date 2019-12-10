@@ -17,63 +17,38 @@ def merge(arrA, arrB):
             merged_arr.append(arrB[arrB_index])
             arrB_index += 1
     if arrA_index == len(arrA):
-    # ^ if its the last element left in array A (we know that we already pushed all the array A elements onto the merged array)
-    # ^ and if this is the case, there must also be only 1 element left in array B
-    # ^ so we push the remaining element of B directly onto Merged Array
-        merged_arr.extend(arrB[arrB_index:]) # put that last element LAST on the merged list with extend()method
+        # ^ if its the last element left in array A (we know that we already pushed all the array A elements onto the merged array)
+        # ^ and if this is the case, there must also be only 1 element left in array B
+        # ^ so we push the remaining element of B directly onto Merged Array
+        # put that last element LAST on the merged list with extend()method
+        merged_arr.extend(arrB[arrB_index:])
     else:
         merged_arr.extend(arrA[arrA_index:])
 
     return merged_arr
+
+
     # test below to make sure they're merging properly
-arrA = [1, 3, 5] # remember we are assuming these are sorted already!
-arrB = [2, 4, 6] # so make your tests sorted lists!!!
-print (merge(arrA, arrB))
+arrA = [1, 3, 5]  # remember we are assuming these are sorted already!
+arrB = [2, 4, 6]  # so make your tests sorted lists!!!
+print(merge(arrA, arrB))
 # works
 
 
 # TO-DO: implement the Merge Sort function below USING RECURSION
-# def merge_sort(arr):
-#     # TO-DO
-#     if len(arr) <= 1: return arr
-#     else:
-#         middle = len(arr) // 2  # divide the list in half
-#         left = arr[:middle]  # divide the list into lefthand side up until the middle
-#         right = arr[middle:]  # and righthand sides, middle to the end
-
-#         merge_sort(left)  # now this recursively calls the left
-#         merge_sort(right)  # and this recursively calls the right side
-
-#         i = 0
-#         j = 0
-#         k = 0  # set indexes to = 0
-#         while i < len(left) and j < len(right):
-#             if left[i] < right[j]:
-#                 arr[k] = left[i]
-#                 i = i + 1
-#             else:
-#                 arr[k] = right[j]
-#                 j = j + 1
-#             k = k + 1
-#         while i < len(left):
-#             arr[k] = left[i]
-#             i = i + 1
-#             k = k + 1
-#         while j < len(right):
-#             arr[k] = right[j]
-#             j = j + 1
-#             k = k + 1
-
-#     return arr
 def merge_sort(arr):
-    if len(arr) <= 1:
-        return arr
-    left, right = merge_sort(arr[:len(arr)/2]), merge_sort(arr[len(arr)/2:])
-    # call the helper function from above to put the 2 lists back together sorted
+    if len(arr) <= 1:  # check to see if the array has at least 1 element, if it DOES, its sorted
+        return arr  # ^ so it will just return the sorted array of length 1
+    # from index 0 until the middle #dont forget to use int div //
+    left = merge_sort(arr[:len(arr)//2])
+    right = merge_sort(arr[len(arr)//2:])  # from the middle to the end
+    # ^ split the list in half and create 2 new variables called left & right
+    # ^ called the merge_sort func recursively on each
+    # call the merge helper function from above to put the 2 lists back together sorted
     return merge(left, right)
 
 
-print(merge_sort([2, 12, 8, 6, 14, 3]))  # test
+print(merge_sort([2, 12, 8, 6, 14, 3, 1]))  # test
 
 
 # STRETCH: implement an in-place merge sort algorithm
